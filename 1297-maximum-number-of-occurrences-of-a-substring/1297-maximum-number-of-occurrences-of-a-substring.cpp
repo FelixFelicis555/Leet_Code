@@ -1,4 +1,4 @@
-#if a string have occurrences x times, any of its substring must also appear at least x times
+# let a string have occurrences x times, any of its substring must also appear at least x times
 #there must be a substring of length minSize, that has the most occurrences
 #so that we just need to count the occurrences of all substring with length minSize
 
