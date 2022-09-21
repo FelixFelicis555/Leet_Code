@@ -24,7 +24,9 @@ public:
         else if(root->right)
         {
             s+="()";
-        } 
+        }   
+            
+         
         if(root->right)
         {
             s+='(';
