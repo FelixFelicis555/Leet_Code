@@ -1,18 +1,15 @@
 class Solution {
 public:
     vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
-       vector<pair<int,string>>v;
-        int n=names.size();
+       vector<int>ids(names.size());
+       iota(begin(ids),end(ids),0);
         vector<string>res;
-        for(int i=0;i<n;i++)
-        {
-            v.push_back({heights[i],names[i]});
-        }
-        sort(v.begin(),v.end(),greater<>());
-        for(auto it:v)
-        {
-            res.push_back(it.second);
-        }
-        return res; 
+        sort(begin(ids),end(ids),[&](int i,int j){
+            return heights[i]>heights[j];
+        });
+        transform(begin(ids),end(ids),back_inserter(res),[&](int i){
+            return names[i];
+        });
+        return res;
     }
 };
