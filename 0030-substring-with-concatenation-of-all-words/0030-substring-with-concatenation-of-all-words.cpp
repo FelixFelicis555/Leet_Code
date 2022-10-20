@@ -2,11 +2,14 @@ class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
        map<string,int>m1;
+        // To get frequency of each word & no of unique words present in array of string word we are using hash-map
         vector<int>ans;
+        // To store the begin-indices of all valid window
         for(int i=0;i<words.size();i++)
         {
             m1[words[i]]++;
         }
+        // Since all words are of same size,you can get the size of required window 
         int l=words[0].length();
         int n=l*words.size();
         if(s.size()<n)
