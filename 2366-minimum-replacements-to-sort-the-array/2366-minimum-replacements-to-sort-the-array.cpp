@@ -1,7 +1,17 @@
 class Solution {
 public:
     long long minimumReplacement(vector<int>& nums) {
-      long long ans=0;
+         long long ans=0;
+        
+        // Where to start?
+        
+        // we will traverse from  the end of an array
+        
+        // How to break an element?
+        
+        // You need to break an element by doing operations on current element which are less than element right to it.
+        
+        // By doing so,we get an optimal solution
         long long max=nums.back();
         for(int i=nums.size()-2;i>=0;i--)
         {
