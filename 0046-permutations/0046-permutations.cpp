@@ -7,8 +7,7 @@ public:
         vector<vector<int>>ans;
         for(int i=0;i<nums.size();i++)
         {
-            vector<int>temp;
-            temp.push_back(nums[i]);
+            
             vector<int>v;
             for(int j=0;j<nums.size();j++)
             {
