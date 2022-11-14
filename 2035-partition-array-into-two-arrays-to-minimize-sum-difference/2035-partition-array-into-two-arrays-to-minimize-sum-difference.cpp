@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minimumDifference(vector<int>& nums) {
-        int n=nums.size(),res=0,sum=0;
+       int n=nums.size(),res=0,sum=0;
         int N=n/2;
          sum = accumulate(nums.begin(), nums.end(),0);
         vector<vector<int>>left(N+1),right(N+1);
@@ -39,7 +39,6 @@ public:
             }
         }
         return res;
-            
-        
+             
     }
 };
