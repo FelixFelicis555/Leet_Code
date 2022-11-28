@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        map<int,vector<int>>m;
+       map<int,vector<int>>m;
         set<int>s;
         int n=matches.size();
         for(int i=0;i<n;i++)
@@ -28,8 +28,6 @@ public:
         ans.push_back(v1);
         ans.push_back(v);
         return ans;
-        
-        
-        
+         
     }
 };
