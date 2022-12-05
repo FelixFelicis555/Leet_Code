@@ -1,42 +1,59 @@
 class Solution {
 public:
-     void dfs(int i, int j, vector<vector<int>> &g){
-        if(i<0 || j<0 || i>=g.size() || j>=g[i].size() || g[i][j]!=0)
-            return;
+    vector<string>g;
+    vector<vector<vector<bool>>>vis;
+    bool inside(int row,int col)
+    {
+        int height=g.size();
+        int width=g[0].size();
+       return 0<=row && row<height && 0<=col && col<width ;
         
-        g[i][j]=1;
-        dfs(i+1, j, g);
-        dfs(i-1, j, g);
-        dfs(i, j+1, g);
-        dfs(i, j-1, g);
+    }
+    void dfs(int row,int col,int type)
+    {
+        if(!inside(row,col) || vis[row][col][type])
+            return;
+        vis[row][col][type]=true;
+        if(type==1)
+        {
+            dfs(row,col+1,3); // on the right
+            
+       }
+        else if(type==0)
+            dfs(row-1,col,2);// above me
+        else if(type==2)
+            dfs(row+1,col,0);// below me
+        else if(type==3)
+            dfs(row,col-1,1); // on the lef
+            else
+                assert(false);
+        if(g[row][col]!='/')
+            dfs(row,col,type^1);
+        if(g[row][col]!='\\')
+            dfs(row,col,type^3);
+        
+            
     }
     int regionsBySlashes(vector<string>& grid) {
         int n=grid.size();
-        vector<vector<int>> g(n*3, vector<int>(n*3,0));
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(grid[i][j]=='/'){
-                    g[i*3][j*3+2]=1;
-                    g[i*3+1][j*3+1]=1;
-                    g[i*3+2][j*3]=1;
-                }
-                else if(grid[i][j]=='\\'){
-                    g[i*3+2][j*3+2]=1;
-                    g[i*3+1][j*3+1]=1;
-                    g[i*3][j*3]=1;
-                }
-            }
-        }
+        int m=grid[0].size();
+        g=grid;
+        vis.resize(n,vector<vector<bool>>(m,vector<bool>(4)));
         int c=0;
-        for(int i=0;i<n*3;i++){
-            for(int j=0;j<n*3;j++){
-                if(g[i][j]==0){
-                  dfs(i, j, g);
-                  c++;  
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                for(int type=0;type<4;type++)
+                {
+                    if(!vis[i][j][type])
+                    {
+                        dfs(i,j,type);
+                        c++;
+                    }
                 }
-                    
             }
         }
-        return c;
+                   return c;
     }
 };
