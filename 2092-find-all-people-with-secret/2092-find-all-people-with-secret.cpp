@@ -21,6 +21,7 @@ public:
             p[i]=i;
         }
         int m=meetings.size();
+        sort(meetings.begin(),meetings.end(),comp);
         for(int i=0;i<m;i++){
             adj[meetings[i][2]].push_back({meetings[i][0], meetings[i][1]});
         }
