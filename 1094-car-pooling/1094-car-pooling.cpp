@@ -1,21 +1,16 @@
 class Solution {
 public:
     bool carPooling(vector<vector<int>>& trips, int capacity) {
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        int n=trips.size();
-        for(int i=0;i<n;i++)
+        int stops[1001]={};
+        for(auto t:trips)
         {
-            pq.push({trips[i][1],trips[i][0]});
-            pq.push({trips[i][2],-trips[i][0]});
+            stops[t[1]]+=t[0];
+            stops[t[2]]-=t[0];
         }
-        int onboard=0;
-        while(!pq.empty())
+        for(int i=0;capacity>=0 && i<1001;i++)
         {
-            onboard=onboard+pq.top().second;
-            pq.pop();
-            if(onboard>capacity)
-                return false;
+            capacity-=stops[i];
         }
-        return true;
+        return capacity>=0;
     }
 };
