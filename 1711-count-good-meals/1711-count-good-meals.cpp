@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int countPairs(vector<int>& deliciousness) {
+     vector<int>d(deliciousness);
+        int n=d.size();
+        int i=0,j=n-1,ans=0;
+        unordered_map<int,int> m;
+        int mod=1e9+7;
+        for(auto &i: d){
+                for(int j=0;j<=21;j++){
+                    int p=1<<j;
+                    if(m.find(p-i)!=m.end())
+                        ans=(ans+m[p-i])%mod;
+            }
+            m[i]++;
+        }
+        return ans; 
+    }
+};
