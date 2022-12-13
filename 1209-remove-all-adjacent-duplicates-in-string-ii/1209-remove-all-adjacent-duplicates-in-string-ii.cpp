@@ -5,26 +5,31 @@ public:
         int n=s.size();
         for(int i=0;i<n;i++)
         {
-           int c=1;
-           if(!st.empty())
-           {
-               if(st.top().first==s[i])
-               {
-                   c=st.top().second+1;
-               }    
-           }  
-            st.push({s[i],c});
-            if(st.top().second==k)
+            if(st.empty() || s[i]!=st.top().first)
             {
-                int d=k;
-                while(d--)
-                {
-                    st.pop();
-                } 
-                s.erase(i-k+1,k);
-                i-=k;
-            }    
-        } 
-        return s;
+                st.push({s[i],1});
+            }
+            else
+            {
+                auto prev=st.top();
+                st.pop();
+                st.push({prev.first,prev.second+1});
+            }
+            if(st.top().second==k)
+                st.pop();
+          
+        }
+        string ans="";
+        while(!st.empty())
+        {
+            auto cur=st.top();
+            st.pop();
+            while(cur.second--)
+            {
+                ans.push_back(cur.first);
+            }
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
     }
 };
