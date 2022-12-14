@@ -2,7 +2,7 @@ class Solution {
 public:
     int solve(vector<int>&nums,int low,int high)
     {
-       if(high<low)
+       if(nums[high]>nums[low])
            return nums[0];
         if(high==low)
             return nums[low];
