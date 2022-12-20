@@ -1,0 +1,1 @@
+We have to move from right to left till the point where the left element is larger than right element, (x here). If x is still -1 after the traversal that means the array is already sorted in increasing order so we just return the array. If not, we need to swap this with the largest value on its right side that is less than x, (whose index is p here) and we are done!
