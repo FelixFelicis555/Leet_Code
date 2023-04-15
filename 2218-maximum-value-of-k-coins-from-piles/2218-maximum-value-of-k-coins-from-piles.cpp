@@ -4,24 +4,28 @@ public:
     int l;
     int n;
     long long solve(vector<vector<int>>& piles, int p, int c){
+       // Base-condition
+        
+        // If we reached end of k moves
         if(c==l)
             return 0;
+        // If we reached end of piles size
         if(p==n)
             return 0;
-        
+        // If we reached this state before
         if(dp[p][c]!=-1)
             return dp[p][c];
         
         
         long long sum=0, ans=0;
-        ans=max(ans, solve(piles,p+1,c));
+        ans=max(ans, solve(piles,p+1,c)); // Not take condition
         
         int sz=piles[p].size();
         int lim=min(l-c, sz);
         
         for(int i=0;i<lim;i++){
             sum=piles[p][i];
-            ans=max(ans, sum+solve(piles,p+1,c+(i+1)));
+            ans=max(ans, sum+solve(piles,p+1,c+(i+1))); // Take first j coins from ith pile
         }
         return dp[p][c]=ans;
     }
