@@ -8,21 +8,20 @@ class Solution{
 public:
 	void pushZerosToEnd(int arr[], int n) {
 	    // code here
-	
-	   int nxt=0;
-	   for(int i=0;i<n;i++)
-	   {
-	       if(arr[i]!=0)
-	       {
-	           arr[nxt]=arr[i];
-	           nxt++;
-	       }
-	       
-	   }
-	   for(int i=nxt;i<n;i++)
-	   {
-	       arr[i]=0;
-	   }
+	 
+	 // Approach- Partitioning the array
+	 // Whenever we see non-zero element,we simply swap with pivot element which we consider as '0'
+	 int j=0;
+	 for(int i=0;i<n;i++)
+	 {
+	     if(arr[i]!=0)
+	     {
+	         swap(arr[j],arr[i]);
+	         j++;
+	     }
+	 }
+	 
+	   
 	}
 };
 
