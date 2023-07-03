@@ -11,23 +11,23 @@ class Solution{
     public:
     int removeConsecutiveSame(vector <string > v) 
     {
-        stack<string>st;
-        int n=v.size();
-        for(int i=0;i<n;i++)
-        {
-            if(st.empty())
-            {
-                st.push(v[i]);
-            }
-            else
-            {
-                if(v[i]==st.top())
-                st.pop();
-                else
-                st.push(v[i]);
-            }
-        }
-        return st.size();
+       stack<string>st;
+       int n=v.size();
+       for(int i=0;i<n;i++)
+       {
+           if(st.empty())
+           st.push(v[i]);
+           else
+           {
+               if(v[i]==st.top())
+               {
+                   st.pop();
+               }
+               else
+               st.push(v[i]);
+           }
+       }
+       return st.size();
     } 
 };
 
